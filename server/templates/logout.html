@@ -1,0 +1,22 @@
+ 1→<!DOCTYPE html>
+ 2→<html lang="zh-CN">
+ 3→<head>
+ 4→<meta charset="UTF-8">
+ 5→<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 6→<title>登出 - {{ brand.full_name }}</title>
+ 7→<link rel="stylesheet" href="/static/css/style.css">
+ 8→<meta http-equiv="refresh" content="3;url={{ redirect }}">
+ 9→</head>
+<body>
+
+<div class="logout-container">
+  <div class="logout-card">
+    <div class="logout-icon">👋</div>
+    <h2>已安全退出</h2>
+    <p>您已成功退出登录，页面即将跳转...</p>
+    <a href="{{ redirect }}" class="btn btn-primary">立即返回</a>
+  </div>
+</div>
+
+</body>
+</html>

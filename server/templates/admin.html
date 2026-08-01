@@ -1,0 +1,55 @@
+ 1→<!DOCTYPE html>
+ 2→<html lang="zh-CN">
+ 3→<head>
+ 4→<meta charset="UTF-8">
+ 5→<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 6→<title>管理后台 - NovaSSO</title>
+ 7→<link rel="stylesheet" href="/static/css/style.css">
+ 8→</head>
+ 9→<body>
+
+<div class="admin-layout">
+  <!-- 侧边栏 -->
+  <aside class="admin-sidebar">
+    <div class="sidebar-brand">
+      <div style="width:36px;height:36px;background:linear-gradient(135deg,#2563eb,#0ea5e9);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;">🚀</div>
+      <span style="font-weight:700;font-size:16px;">NovaSSO 管理</span>
+    </div>
+
+    <nav class="sidebar-menu">
+      <div class="sidebar-item active" data-page="dashboard">
+        <span class="icon">📊</span>
+        <span>仪表盘</span>
+      </div>
+      <div class="sidebar-item" data-page="users">
+        <span class="icon">👥</span>
+        <span>用户管理</span>
+      </div>
+      <div class="sidebar-item" data-page="apps">
+        <span class="icon">📱</span>
+        <span>应用管理</span>
+      </div>
+      <div class="sidebar-item" data-page="sessions">
+        <span class="icon">🔐</span>
+        <span>在线会话</span>
+      </div>
+      <div class="sidebar-item" data-page="audit">
+        <span class="icon">📝</span>
+        <span>审计日志</span>
+      </div>
+      <div class="sidebar-item" data-page="cluster">
+        <span class="icon">🌐</span>
+        <span>集群状态</span>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="admin-main" id="admin-content">
+    <!-- 内容由JS动态渲染 -->
+  </main>
+</div>
+
+<script src="/static/js/admin.js"></script>
+</body>
+</html>

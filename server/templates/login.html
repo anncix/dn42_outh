@@ -1,0 +1,77 @@
+ 1→<!DOCTYPE html>
+ 2→<html lang="zh-CN">
+ 3→<head>
+ 4→<meta charset="UTF-8">
+ 5→<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 6→<title>登录 - {{ brand.full_name }}</title>
+ 7→<link rel="stylesheet" href="/static/css/style.css">
+ 8→</head>
+ 9→<body>
+
+<div class="login-container">
+  <div class="login-card">
+    {% if node_id %}
+    <span class="node-badge">{{ node_id }}</span>
+    {% endif %}
+
+    <div class="login-logo">
+      <div class="logo-icon">{{ brand.logo }}</div>
+      <h1>{{ brand.full_name }}</h1>
+      <p>{{ brand.tagline }}</p>
+    </div>
+
+    {% if error %}
+    <div class="alert alert-error">
+      <span>⚠️</span>
+      <span>{{ error }}</span>
+    </div>
+    {% endif %}
+
+    <form class="login-form" method="POST" action="/login">
+      <input type="hidden" name="service" value="{{ service }}">
+      <input type="hidden" name="app" value="{{ app_id }}">
+      <input type="hidden" name="silent" value="{{ 'true' if silent else 'false' }}">
+      <input type="hidden" name="redirect" value="{{ redirect }}">
+
+      <div class="form-group">
+        <label for="username">用户名</label>
+        <input type="text" id="username" name="username"
+               placeholder="请输入用户名" required autofocus>
+      </div>
+
+      <div class="form-group">
+        <label for="password">密码</label>
+        <input type="password" id="password" name="password"
+               placeholder="请输入密码" required>
+      </div>
+
+      <div class="login-options">
+        <label class="remember-me">
+          <input type="checkbox" name="remember" checked>
+          <span>记住登录状态</span>
+        </label>
+        <a href="#" class="forgot-link">忘记密码？</a>
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        <span>登 录</span>
+      </button>
+    </form>
+
+    <div class="login-footer">
+      <p>{{ brand.footer }}</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// 回车提交
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    document.querySelector('.login-form').dispatchEvent(new Event('submit'));
+  }
+});
+</script>
+
+</body>
+</html>

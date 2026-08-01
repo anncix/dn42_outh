@@ -1,0 +1,103 @@
+  1→<!DOCTYPE html>
+  2→<html lang="zh-CN">
+  3→<head>
+  4→<meta charset="UTF-8">
+  5→<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  6→<title>{{ brand.full_name }}</title>
+  7→<link rel="stylesheet" href="/static/css/style.css">
+  8→</head>
+  9→<body>
+ 10→
+ 11→<div class="app-container">
+ 12→  <!-- 导航栏 -->
+ 13→  <nav class="navbar">
+ 14→    <div class="navbar-inner">
+ 15→      <a href="/" class="navbar-brand">
+ 16→        <div class="logo-icon">{{ brand.logo }}</div>
+ 17→        <h1>{{ brand.name }}</h1>
+ 18→      </a>
+ 19→
+ 20→      <div class="navbar-nav">
+ 21→        <a href="/" class="nav-link">应用中心</a>
+ 22→        {% if user and user.is_admin %}
+ 23→        <a href="/admin" class="nav-link">管理后台</a>
+ 24→        {% endif %}
+ 25→      </div>
+ 26→
+ 27→      <div class="user-menu">
+ 28→        {% if user %}
+ 29→        <span style="font-size: 13px; color: var(--text-secondary);">
+ 30→          {{ user.nickname or user.username }}
+ 31→        </span>
+ 32→        <div class="user-avatar">
+ 33→          {{ (user.nickname or user.username)[0]|upper }}
+ 34→        </div>
+ 35→        <a href="/logout" class="btn btn-secondary btn-sm">退出</a>
+ 36→        {% else %}
+ 37→        <a href="/login" class="btn btn-primary btn-sm">登录</a>
+ 38→        {% endif %}
+ 39→      </div>
+ 40→    </div>
+ 41→  </nav>
+ 42→
+ 43→  <!-- 主内容 -->
+ 44→  <main class="main-content">
+ 45→    {% if user %}
+ 46→    <!-- 已登录状态 -->
+ 47→    <div class="page-header">
+ 48→      <h1 class="page-title">欢迎回来，{{ user.nickname or user.username }} 👋</h1>
+ 49→      <p class="page-subtitle">以下是您可以访问的应用系统</p>
+ 50→    </div>
+ 51→
+ 52→    {% if apps %}
+ 53→    <div class="apps-grid">
+ 54→      {% for app in apps %}
+ 55→      <a href="{{ app.callback_url }}" class="app-card">
+ 56→        <div class="app-card-header">
+ 57→          <div class="app-icon">📱</div>
+ 58→          <div class="app-info">
+ 59→            <h3>{{ app.app_name }}</h3>
+ 60→            <p>{{ app.app_id }}</p>
+ 61→          </div>
+ 62→        </div>
+ 63→        <p class="app-card-desc">
+ 64→          {{ app.app_description or '点击进入应用系统' }}
+ 65→        </p>
+ 66→      </a>
+ 67→      {% endfor %}
+ 68→    </div>
+ 69→    {% else %}
+ 70→    <div class="card" style="text-align: center; padding: 60px 24px;">
+ 71→      <div style="font-size: 48px; margin-bottom: 16px;">📭</div>
+ 72→      <h3 style="margin-bottom: 8px;">暂无可用应用</h3>
+ 73→      <p style="color: var(--text-muted);">请联系管理员为您分配应用访问权限</p>
+ 74→    </div>
+ 75→    {% endif %}
+ 76→
+ 77→    <!-- 集群状态 -->
+ 78→    <div class="cluster-status">
+ 79→      <div class="status-dot"></div>
+ 80→      <div>
+ 81→        <strong>节点状态：</strong>
+ 82→        <span>{{ node_name }} ({{ node_id }}) · 运行正常</span>
+ 83→      </div>
+ 84→    </div>
+ 85→
+ 86→    {% else %}
+ 87→    <!-- 未登录状态 -->
+ 88→    <div style="text-align: center; padding: 80px 20px;">
+ 89→      <div style="font-size: 64px; margin-bottom: 24px;">{{ brand.logo }}</div>
+ 90→      <h1 style="font-size: 32px; margin-bottom: 12px;">{{ brand.full_name }}</h1>
+ 91→      <p style="color: var(--text-muted); margin-bottom: 32px; font-size: 16px;">
+ 92→        {{ brand.tagline }}
+ 93→      </p>
+ 94→      <a href="/login" class="btn btn-primary" style="font-size: 16px; padding: 14px 40px;">
+ 95→        立即登录
+ 96→      </a>
+ 97→    </div>
+ 98→    {% endif %}
+ 99→  </main>
+</div>
+
+</body>
+</html>
